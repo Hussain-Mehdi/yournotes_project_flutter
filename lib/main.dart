@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'screens/login_Screen.dart';
 import 'screens/signup_screen.dart';
 import 'screens/splash_screen.dart';
 import 'widgets/button_widget.dart';
 
-void main(List<String> args) {
+Future main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
