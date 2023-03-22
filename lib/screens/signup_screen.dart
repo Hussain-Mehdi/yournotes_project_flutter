@@ -122,11 +122,8 @@ class SignUpScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 70.0),
               child: InkWell(
-                onTap: registerButtonPress,
-                child: MyButton(
-                  ButtonText: 'Register',
-                ),
-              ),
+                  onTap: registerButtonPress,
+                  child: MyButton(buttonText: 'Register', pressed: false)),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -153,9 +150,9 @@ class SignUpScreen extends StatelessWidget {
   }
 
   registerButtonPress() {
-    print("========================================Button Pressed");
-    bool isRegistered;
+    var isRegistered;
     HttpHelper httphelper = HttpHelper();
-    httphelper.registerUserWithEmailPassword(userEmail.text, userPassword.text);
+    isRegistered = httphelper.registerUserWithEmailPassword(
+        userEmail.text, userPassword.text);
   }
 }
