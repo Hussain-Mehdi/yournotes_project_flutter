@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/button_widget.dart';
-import 'signup_screen.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({super.key});
 
-  TextEditingController userName = TextEditingController();
+  TextEditingController userFullName = TextEditingController();
+  TextEditingController userEmail = TextEditingController();
   TextEditingController userPassword = TextEditingController();
+  TextEditingController userConfirmPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: const Color(0xffF5F5F5),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(
               height: 100,
@@ -39,19 +41,35 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              height: 250,
-              decoration: const BoxDecoration(
-                  image:
-                      DecorationImage(image: AssetImage('./images/login.png'))),
-            ),
             Padding(
               padding: const EdgeInsets.only(
                   left: 25.0, right: 25, bottom: 10, top: 35),
               child: SizedBox(
                 height: 60,
                 child: TextField(
-                  controller: userName,
+                  controller: userFullName,
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'Enter full name',
+                      hintStyle:
+                          const TextStyle(fontSize: 14, color: Colors.black45),
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(30))),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 25.0,
+                right: 25,
+                bottom: 10,
+              ),
+              child: SizedBox(
+                height: 60,
+                child: TextField(
+                  controller: userEmail,
                   decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -65,7 +83,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 25.0, right: 25),
+              padding: const EdgeInsets.only(left: 25.0, right: 25, bottom: 10),
               child: SizedBox(
                 height: 60,
                 child: TextField(
@@ -83,27 +101,42 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             Padding(
+              padding: const EdgeInsets.only(left: 25.0, right: 25),
+              child: SizedBox(
+                height: 60,
+                child: TextField(
+                  controller: userConfirmPassword,
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: 'Confirm Password',
+                      hintStyle:
+                          const TextStyle(fontSize: 14, color: Colors.black45),
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(30))),
+                ),
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.only(top: 70.0),
-              child: MyButton(ButtonText: 'Login', onpress: onpress),
+              child: MyButton(
+                  ButtonText: 'Register', onpress: registerButtonPress),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "Don't have an account?",
+                  "Already have an account?",
                   style: TextStyle(
                     fontSize: 12,
                   ),
                 ),
                 TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SignUpScreen(),
-                          ));
+                      Navigator.pop(context);
                     },
-                    child: const Text("SignUp",
+                    child: const Text("SignIn",
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.w700)))
               ],
@@ -114,9 +147,5 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  void onpress() {
-    print("This is on press");
-  }
-
-  void pressLoginButton() {}
+  void registerButtonPress() {}
 }

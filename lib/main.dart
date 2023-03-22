@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'screens/login_Screen.dart';
+import 'screens/signup_screen.dart';
 import 'screens/splash_screen.dart';
 import 'widgets/button_widget.dart';
 
 void main(List<String> args) {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,6 +17,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "YOURNOTE",
-        home: LoginScreen());
+        home: SignUpScreen());
   }
 }
