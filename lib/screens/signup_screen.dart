@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../httphelper/httphelper.dart';
 import '../widgets/button_widget.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -120,8 +121,12 @@ class SignUpScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 70.0),
-              child: MyButton(
-                  ButtonText: 'Register', onpress: registerButtonPress),
+              child: InkWell(
+                onTap: registerButtonPress,
+                child: MyButton(
+                  ButtonText: 'Register',
+                ),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -147,5 +152,10 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 
-  void registerButtonPress() {}
+  registerButtonPress() {
+    print("========================================Button Pressed");
+    bool isRegistered;
+    HttpHelper httphelper = HttpHelper();
+    httphelper.registerUserWithEmailPassword(userEmail.text, userPassword.text);
+  }
 }

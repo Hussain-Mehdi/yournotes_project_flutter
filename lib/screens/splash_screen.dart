@@ -39,14 +39,10 @@ class SplashScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 70.0),
-            child: MyButton(ButtonText: 'Get Started', onpress: onpress),
+            child: MyButton(ButtonText: 'Get Started'),
           ),
         ],
       ),
     );
-  }
-
-  void onpress() {
-    print("This is on press");
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yournotes_project_flutter/httphelper/httphelper.dart';
 
 import '../widgets/button_widget.dart';
 import 'signup_screen.dart';
@@ -6,7 +7,7 @@ import 'signup_screen.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  TextEditingController userName = TextEditingController();
+  TextEditingController userEmail = TextEditingController();
   TextEditingController userPassword = TextEditingController();
 
   @override
@@ -51,7 +52,7 @@ class LoginScreen extends StatelessWidget {
               child: SizedBox(
                 height: 60,
                 child: TextField(
-                  controller: userName,
+                  controller: userEmail,
                   decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -84,7 +85,9 @@ class LoginScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 70.0),
-              child: MyButton(ButtonText: 'Login', onpress: onpress),
+              child: MyButton(
+                ButtonText: 'Login',
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -114,9 +117,5 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  void onpress() {
-    print("This is on press");
-  }
-
-  void pressLoginButton() {}
+  void loginUser() {}
 }
