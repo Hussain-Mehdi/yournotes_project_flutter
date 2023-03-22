@@ -6,19 +6,15 @@ class HttpHelper {
 
   Future registerUserWithEmailPassword(
       String userEmail, String userPassword) async {
-    print("===================================inside register method");
     User user;
     try {
       user = (await firebaseAuth.createUserWithEmailAndPassword(
               email: userEmail, password: userPassword))
           .user!;
       if (user != null) {
-        print("==================>User registerd");
         return true;
       }
-    } on FirebaseAuthException catch (e) {
-      print("======================================>${e}");
-    }
+    } on FirebaseAuthException catch (e) {}
   }
 
   Future signInWithEmailPassword(String email, String password) async {
@@ -27,11 +23,8 @@ class HttpHelper {
               email: email, password: password))
           .user!;
       if (user != null) {
-        print("User is not null");
         return true;
       }
-    } on FirebaseAuthException catch (e) {
-      print(e);
-    }
+    } on FirebaseAuthException catch (e) {}
   }
 }

@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "266479465476",
-    "project_id": "yournotes-app",
-    "storage_bucket": "yournotes-app.appspot.com"
+    "project_number": "360622082221",
+    "project_id": "yournotes-app-838ea",
+    "storage_bucket": "yournotes-app-838ea.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:266479465476:android:9aed3d02483e382f6eb151",
+        "mobilesdk_app_id": "1:360622082221:android:393e9ea10d3033eeffde24",
         "android_client_info": {
           "package_name": "com.example.yournotes_project_flutter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "266479465476-rcp6d5lv12vo3p77ojfcvivoi9agbghd.apps.googleusercontent.com",
+          "client_id": "360622082221-qscccd31j3mnemijjvr99ek4ivhjqste.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIYG1rU5mo7uQWHWgJbjdrpgjh8019UCc"
+          "current_key": "AIzaSyDSJHpAFW9twozkWN1gjqRcLYe0VwqNjAY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "266479465476-rcp6d5lv12vo3p77ojfcvivoi9agbghd.apps.googleusercontent.com",
+              "client_id": "360622082221-qscccd31j3mnemijjvr99ek4ivhjqste.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -3,12 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'screens/login_Screen.dart';
 import 'screens/signup_screen.dart';
 import 'screens/splash_screen.dart';
+
 import 'widgets/button_widget.dart';
 
-Future main(List<String> args) async {
-  Firebase.initializeApp();
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
