@@ -29,12 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           iconTheme: const IconThemeData(color: Color.fromARGB(171, 0, 0, 0)),
           actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.settings,
-                  size: 30,
-                )),
             const CircleAvatar(
               backgroundImage: AssetImage("./images/pot1.jpg"),
               backgroundColor: Colors.transparent,
@@ -61,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget emptyHomeScreen() {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Container(
-        height: 10,
+        height: 250,
         decoration: const BoxDecoration(
           image: DecorationImage(image: AssetImage("./images/addnotes.png")),
         ),
@@ -81,17 +75,23 @@ class _HomeScreenState extends State<HomeScreen> {
       const SizedBox(
         height: 50,
       ),
-      Text(
-        "Recently updated",
-        style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600),
+      Padding(
+        padding: const EdgeInsets.only(left: 20.0),
+        child: Text(
+          "Recently updated",
+          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600),
+        ),
       ),
       SizedBox(
         height: 150,
         child: recentlyUpdatedNotes(),
       ),
-      Text(
-        "Your notes",
-        style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600),
+      Padding(
+        padding: const EdgeInsets.only(left: 20.0, bottom: 20),
+        child: Text(
+          "Your notes",
+          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600),
+        ),
       ),
       Expanded(
           child: ListView.builder(
@@ -115,29 +115,38 @@ class _HomeScreenState extends State<HomeScreen> {
       itemBuilder: (BuildContext context, int index) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: 150,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Color.fromARGB(48, 139, 139, 139),
-                      blurRadius: 2,
-                      offset: Offset(1, 1),
-                      spreadRadius: 1)
-                ]),
-            child: Stack(
-              children: [
-                Positioned(
-                    left: 10,
-                    top: 15,
-                    child: Text(
-                      userNotesList[index].noteHeading,
-                      style: GoogleFonts.poppins(
-                          fontSize: 16, fontWeight: FontWeight.w600),
-                    ))
-              ],
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AddNotesScreen(
+                          updateState: userNotesList as Function)));
+            },
+            child: Container(
+              width: 150,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Color.fromARGB(48, 139, 139, 139),
+                        blurRadius: 2,
+                        offset: Offset(1, 1),
+                        spreadRadius: 1)
+                  ]),
+              child: Stack(
+                children: [
+                  Positioned(
+                      left: 10,
+                      top: 15,
+                      child: Text(
+                        userNotesList[index].noteHeading,
+                        style: GoogleFonts.poppins(
+                            fontSize: 16, fontWeight: FontWeight.w600),
+                      ))
+                ],
+              ),
             ),
           ),
         );

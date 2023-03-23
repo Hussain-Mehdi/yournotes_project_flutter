@@ -26,10 +26,10 @@ class MyButton extends StatelessWidget {
               color: const Color(0xffF4B183)),
           child: Center(
               child: pressed
-                  ? CircularProgressIndicator()
+                  ? const CircularProgressIndicator()
                   : Text(
                       buttonText,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 16,
                           color: Colors.white,
                           fontWeight: FontWeight.w600),

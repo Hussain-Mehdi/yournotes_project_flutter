@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../httphelper/httphelper.dart';
 import '../widgets/button_widget.dart';
+import 'login_Screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
@@ -136,7 +137,11 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 TextButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ));
                     },
                     child: const Text("SignIn",
                         style: TextStyle(

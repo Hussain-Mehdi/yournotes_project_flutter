@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yournotes_project_flutter/screens/login_Screen.dart';
 
 import '../widgets/button_widget.dart';
+import 'signup_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -39,9 +41,18 @@ class SplashScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 70.0),
-            child: MyButton(
-              buttonText: 'Get Started',
-              pressed: false,
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignUpScreen(),
+                    ));
+              },
+              child: MyButton(
+                buttonText: 'Get Started',
+                pressed: false,
+              ),
             ),
           ),
         ],
