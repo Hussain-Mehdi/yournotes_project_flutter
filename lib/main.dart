@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'screens/addnotes_screen.dart';
 import 'screens/home_screen.dart';
-import 'screens/login_Screen.dart';
-import 'screens/signup_screen.dart';
-import 'screens/splash_screen.dart';
-
-import 'widgets/button_widget.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "YOURNOTE",
         home: HomeScreen());

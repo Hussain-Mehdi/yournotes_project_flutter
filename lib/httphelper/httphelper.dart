@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:yournotes_project_flutter/screens/signup_screen.dart';
@@ -28,7 +26,7 @@ class HttpHelper {
               email: email, password: password))
           .user!;
       Timer(
-          Duration(seconds: 1),
+          const Duration(seconds: 1),
           () => Navigator.push(
               context,
               MaterialPageRoute(

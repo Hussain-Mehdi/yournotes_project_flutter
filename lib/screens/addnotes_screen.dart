@@ -1,18 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:yournotes_project_flutter/model/addnote_model.dart';
 
-class AddNotesScreen extends StatelessWidget {
-  const AddNotesScreen({super.key});
+class AddNotesScreen extends StatefulWidget {
+  AddNotesScreen({super.key, required this.updateState});
+
+  Function updateState;
+
+  @override
+  State<AddNotesScreen> createState() => _AddNotesScreenState();
+}
+
+class _AddNotesScreenState extends State<AddNotesScreen> {
+  TextEditingController notesheading = TextEditingController();
+  TextEditingController notesContent = TextEditingController();
+  DateTime time = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF5F5F5),
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black45),
+        iconTheme: const IconThemeData(color: Colors.black45),
         actions: [
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                userNotesList.add(AddNotes(
+                    noteHeading: notesheading.text,
+                    noteContent: notesContent.text,
+                    noteTime:
+                        "${time.hour > 12 ? time.hour - 12 : time.hour}:${time.minute}"));
+
+                widget.updateState(true);
+              },
               child: Text(
                 "Save",
                 style: GoogleFonts.poppins(
@@ -30,6 +50,7 @@ class AddNotesScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 18),
             child: TextField(
+              controller: notesheading,
               style: GoogleFonts.poppins(
                   fontSize: 18, fontWeight: FontWeight.w700),
               decoration: const InputDecoration(
@@ -45,6 +66,7 @@ class AddNotesScreen extends StatelessWidget {
             color: Colors.black12,
           ),
           TextField(
+            controller: notesContent,
             style: GoogleFonts.poppins(
               fontSize: 16,
             ),

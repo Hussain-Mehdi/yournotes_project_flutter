@@ -5,7 +5,7 @@ import '../widgets/button_widget.dart';
 import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -134,6 +134,5 @@ class _LoginScreenState extends State<LoginScreen> {
     HttpHelper httpHelper = HttpHelper();
     isLoggedIn = httpHelper.signInWithEmailPassword(
         userEmail.text, userPassword.text, context);
-    print("=======================================Status${isLoggedIn}");
   }
 }
