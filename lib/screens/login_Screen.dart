@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yournotes_project_flutter/httphelper/httphelper.dart';
 import 'package:yournotes_project_flutter/httphelper/sp_helper.dart';
 
+import '../utils/dialogBox.dart';
 import '../widgets/button_widget.dart';
 import 'signup_screen.dart';
 
@@ -63,6 +64,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextField(
                     controller: userEmail,
                     decoration: InputDecoration(
+                        prefixIcon: const CircleAvatar(
+                          radius: 10,
+                          backgroundColor: Colors.transparent,
+                          foregroundColor: Colors.black45,
+                          child: ImageIcon(
+                            AssetImage("./images/user.png"),
+                            size: 20,
+                          ),
+                        ),
                         filled: true,
                         fillColor: Colors.white,
                         hintText: 'Enter email',
@@ -81,6 +91,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextField(
                     controller: userPassword,
                     decoration: InputDecoration(
+                        prefixIcon: const CircleAvatar(
+                          radius: 10,
+                          backgroundColor: Colors.transparent,
+                          foregroundColor: Colors.black45,
+                          child: Icon(
+                            Icons.lock_outline,
+                            size: 20,
+                          ),
+                        ),
                         filled: true,
                         fillColor: Colors.white,
                         hintText: 'Enter Password',
@@ -93,16 +112,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        isLoggedIn = true;
-                      });
-                      loginUser(context);
-                    },
-                    child: MyButton(buttonText: 'Login', pressed: isLoggedIn)),
-              ),
+                  padding: const EdgeInsets.only(top: 30.0),
+                  child: InkWell(
+                      onTap: () {
+                        if (userEmail.text.isEmpty &&
+                            userPassword.text.isEmpty) {
+                          Utils.showDialogBox(context,
+                              titleText: 'Error',
+                              beforeText: 'Please fill out the all fields.');
+                        } else {
+                          setState(() {
+                            isLoggedIn = true;
+                          });
+                          loginUser(context);
+                        }
+                      },
+                      child:
+                          MyButton(buttonText: 'Login', pressed: isLoggedIn))),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

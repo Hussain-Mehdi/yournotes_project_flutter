@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:yournotes_project_flutter/utils/dialogBox.dart';
+import '../utils/dialogBox.dart';
 
 class OTPVerificationScreen extends StatelessWidget {
   String userEmail;
@@ -19,42 +21,10 @@ class OTPVerificationScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                showDialog(
-                    context: context,
-                    barrierDismissible: true,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text("Verification"),
-                        content: RichText(
-                          text: TextSpan(
-                              text: "We have sent you verifcation code on ",
-                              style: GoogleFonts.poppins(
-                                color: Color.fromARGB(190, 0, 0, 0),
-                              ),
-                              children: [
-                                TextSpan(
-                                    text: userEmail,
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 12,
-                                        color: Color(0xffDFA67B),
-                                        fontWeight: FontWeight.w600)),
-                                TextSpan(
-                                    text:
-                                        "You will receive the code in a bit. Verify your account and carry on.",
-                                    style: GoogleFonts.poppins(
-                                      color: Color.fromARGB(190, 0, 0, 0),
-                                    ))
-                              ]),
-                        ),
-                        actions: [
-                          IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(Icons.close))
-                        ],
-                      );
-                    });
+                Utils.showDialogBox(context,
+                    beforeText: 'We have sent you verification code to',
+                    userEmail: userEmail,
+                    afterText: 'You can continue by verifing the code');
               },
               icon: const Icon(Icons.help_outline))
         ],

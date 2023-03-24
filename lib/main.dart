@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
 import 'screens/otpverification_screen.dart';
 import 'screens/splash_screen.dart';
+import 'utils/dialogBox.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+        scaffoldMessengerKey: Utils.messengerKey,
         debugShowCheckedModeBanner: false,
         title: "YOURNOTE",
         home: SplashScreen());

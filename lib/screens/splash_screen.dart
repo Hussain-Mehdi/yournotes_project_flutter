@@ -11,8 +11,8 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Spacer(),
           Container(
             height: 250,
             decoration: const BoxDecoration(
@@ -39,20 +39,18 @@ class SplashScreen extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 70.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
-                    ));
-              },
-              child: MyButton(
-                buttonText: 'Get Started',
-                pressed: false,
-              ),
+          Spacer(),
+          InkWell(
+            onTap: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ));
+            },
+            child: MyButton(
+              buttonText: 'Get Started',
+              pressed: false,
             ),
           ),
         ],

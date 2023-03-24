@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:yournotes_project_flutter/httphelper/sp_helper.dart';
 import 'package:yournotes_project_flutter/screens/signup_screen.dart';
 
+import '../utils/dialogBox.dart';
+
 class HttpHelper {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
@@ -14,9 +16,8 @@ class HttpHelper {
       user = (await firebaseAuth.createUserWithEmailAndPassword(
               email: userEmail, password: userPassword))
           .user!;
-      return true;
     } on FirebaseAuthException catch (e) {
-      return e;
+      Utils.showSnackBar(e.message);
     }
   }
 
@@ -32,7 +33,7 @@ class HttpHelper {
       });
       return true;
     } on FirebaseAuthException catch (e) {
-      return false;
+      print("=======================${e}");
     }
   }
 }
