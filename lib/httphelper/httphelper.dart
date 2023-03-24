@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:yournotes_project_flutter/httphelper/sp_helper.dart';
 import 'package:yournotes_project_flutter/screens/signup_screen.dart';
 
 class HttpHelper {
@@ -22,17 +23,14 @@ class HttpHelper {
   Future signInWithEmailPassword(
       String email, String password, BuildContext context) async {
     try {
-      User user = (await firebaseAuth.signInWithEmailAndPassword(
-              email: email, password: password))
-          .user!;
-      Timer(
-          const Duration(seconds: 1),
-          () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => SignUpScreen(),
-              )));
-      return user.emailVerified;
+      await firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((value) async {
+        if (value == true) {
+          SPHelper.saveUserLoggedIn(true);
+        }
+      });
+      return true;
     } on FirebaseAuthException catch (e) {
       return false;
     }

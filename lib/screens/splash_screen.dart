@@ -43,10 +43,10 @@ class SplashScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 70.0),
             child: InkWell(
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SignUpScreen(),
+                      builder: (context) => const LoginScreen(),
                     ));
               },
               child: MyButton(

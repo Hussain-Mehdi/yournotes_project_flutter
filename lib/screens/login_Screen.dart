@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yournotes_project_flutter/httphelper/httphelper.dart';
+import 'package:yournotes_project_flutter/httphelper/sp_helper.dart';
 
 import '../widgets/button_widget.dart';
 import 'signup_screen.dart';
@@ -113,7 +114,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUpScreen(),
+                            ));
                       },
                       child: const Text("SignUp",
                           style: TextStyle(
