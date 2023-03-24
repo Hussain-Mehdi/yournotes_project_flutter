@@ -15,10 +15,16 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController userEmail = TextEditingController();
-
   TextEditingController userPassword = TextEditingController();
 
-  bool isLoggedIn = false;
+  static bool isLoggedIn = false;
+
+  @override
+  void dispose() {
+    userEmail.dispose();
+    userPassword.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: EdgeInsets.only(top: 30.0),
                 child: Text("Welcome to YOURNOTE",
                     style: TextStyle(
-                        fontSize: 14,
-                        letterSpacing: 2,
+                        fontSize: 20,
+                        letterSpacing: 1,
                         fontWeight: FontWeight.w600)),
               ),
               Container(
@@ -124,7 +130,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           setState(() {
                             isLoggedIn = true;
                           });
-                          loginUser(context);
+                          String value = loginUser(context).toString();
+                          if (value == null) {
+                            Utils.showDialogBox(context,
+                                titleText: value,
+                                afterText: "there is an issue");
+                          } else {
+                            Utils.showDialogBox(context,
+                                titleText: 'Everything is okay');
+
+                            isLoggedIn = true;
+                          }
                         }
                       },
                       child:
@@ -156,10 +172,15 @@ class _LoginScreenState extends State<LoginScreen> {
         ));
   }
 
-  loginUser(context) {
-    var isLoggedIn;
+  Future loginUser(context) {
+    var value;
     HttpHelper httpHelper = HttpHelper();
-    isLoggedIn = httpHelper.signInWithEmailPassword(
+    value = httpHelper.signInWithEmailPassword(
         userEmail.text, userPassword.text, context);
+    return value;
+  }
+
+  bool loggedIn() {
+    return isLoggedIn;
   }
 }

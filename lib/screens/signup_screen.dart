@@ -40,8 +40,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 padding: EdgeInsets.only(top: 30.0),
                 child: Text("Welcome to YOURNOTE",
                     style: TextStyle(
-                        fontSize: 14,
-                        letterSpacing: 2,
+                        fontSize: 20,
+                        letterSpacing: 1,
                         fontWeight: FontWeight.w600)),
               ),
               Container(

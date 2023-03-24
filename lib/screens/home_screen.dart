@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:yournotes_project_flutter/model/addnote_model.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,6 +7,7 @@ import 'package:yournotes_project_flutter/screens/addnotes_screen.dart';
 
 import '../shared/menu_drawer.dart';
 import '../widgets/notesTile_widget.dart';
+import 'login_Screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -49,7 +52,16 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           child: const Icon(Icons.add),
         ),
-        body: availableData ? loadedHomeScreen() : emptyHomeScreen());
+        body: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return loadedHomeScreen();
+            } else {
+              return emptyHomeScreen();
+            }
+          },
+        ));
   }
 
   Widget emptyHomeScreen() {

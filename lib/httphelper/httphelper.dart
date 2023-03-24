@@ -30,10 +30,10 @@ class HttpHelper {
         if (value == true) {
           SPHelper.saveUserLoggedIn(true);
         }
+        return value.toString();
       });
-      return true;
     } on FirebaseAuthException catch (e) {
-      print("=======================${e}");
+      return e.message.toString();
     }
   }
 }
