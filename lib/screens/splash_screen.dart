@@ -40,17 +40,20 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
           Spacer(),
-          InkWell(
-            onTap: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ));
-            },
-            child: MyButton(
-              buttonText: 'Get Started',
-              pressed: false,
+          Padding(
+            padding: const EdgeInsets.only(bottom: 40),
+            child: InkWell(
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ));
+              },
+              child: MyButton(
+                buttonText: 'Get Started',
+                pressed: false,
+              ),
             ),
           ),
         ],

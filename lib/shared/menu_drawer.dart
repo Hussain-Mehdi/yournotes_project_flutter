@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:yournotes_project_flutter/screens/home_screen.dart';
 import '../screens/favourite_screen.dart';
 import '../screens/setting_screen.dart';
@@ -16,7 +17,18 @@ class MenuDrawer extends StatelessWidget {
   }
 
   List<Widget> buildMenuItem(BuildContext context) {
-    List<String> menuData = ['Home', 'Favourite', 'Setting', 'Logout'];
+    List<String> menuData = [
+      'Home',
+      'Favourite',
+      'Setting',
+      'Logout',
+    ];
+    List<Widget> menuIcons = [
+      Icon(Icons.home_outlined),
+      Icon(Icons.favorite_outline),
+      Icon(Icons.settings_outlined),
+      Icon(Icons.logout_outlined)
+    ];
     List<Widget> menuItem = [];
 
     menuItem.add(const DrawerHeader(
@@ -24,11 +36,15 @@ class MenuDrawer extends StatelessWidget {
           color: Color(0xffF4B183),
         ),
         child: Text("YOURNOTE")));
-
+    int index = 0;
     menuData.forEach((String value) {
       Widget screen = Container();
       menuItem.add(ListTile(
-        title: Text(value),
+        leading: menuIcons[index],
+        title: Text(
+          value,
+          style: GoogleFonts.poppins(fontSize: 16),
+        ),
         onTap: () {
           switch (value) {
             case 'Home':
@@ -49,6 +65,7 @@ class MenuDrawer extends StatelessWidget {
           ));
         },
       ));
+      index++;
     });
     return menuItem;
   }

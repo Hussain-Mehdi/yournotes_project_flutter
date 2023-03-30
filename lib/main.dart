@@ -20,6 +20,6 @@ class MyApp extends StatelessWidget {
         scaffoldMessengerKey: Utils.messengerKey,
         debugShowCheckedModeBanner: false,
         title: "YOURNOTE",
-        home: SplashScreen());
+        home: HomeScreen());
   }
 }

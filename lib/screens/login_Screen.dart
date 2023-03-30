@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yournotes_project_flutter/httphelper/httphelper.dart';
 import 'package:yournotes_project_flutter/httphelper/sp_helper.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import '../utils/dialogBox.dart';
 import '../widgets/button_widget.dart';
@@ -131,16 +132,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             isLoggedIn = true;
                           });
                           String value = loginUser(context).toString();
-                          if (value == null) {
-                            Utils.showDialogBox(context,
-                                titleText: value,
-                                afterText: "there is an issue");
-                          } else {
-                            Utils.showDialogBox(context,
-                                titleText: 'Everything is okay');
-
-                            isLoggedIn = true;
-                          }
                         }
                       },
                       child:
@@ -172,15 +163,14 @@ class _LoginScreenState extends State<LoginScreen> {
         ));
   }
 
-  Future loginUser(context) {
-    var value;
+  loginUser(context) async {
+    setState(() {
+      isLoggedIn = true;
+    });
+    String userID;
     HttpHelper httpHelper = HttpHelper();
-    value = httpHelper.signInWithEmailPassword(
-        userEmail.text, userPassword.text, context);
-    return value;
-  }
-
-  bool loggedIn() {
-    return isLoggedIn;
+    userID = httpHelper
+        .signInWithEmailPassword(userEmail.text, userPassword.text, context)
+        .toString();
   }
 }

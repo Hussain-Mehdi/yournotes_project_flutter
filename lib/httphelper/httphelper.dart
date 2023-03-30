@@ -23,15 +23,10 @@ class HttpHelper {
 
   Future signInWithEmailPassword(
       String email, String password, BuildContext context) async {
+    User user;
     try {
-      await firebaseAuth
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) async {
-        if (value == true) {
-          SPHelper.saveUserLoggedIn(true);
-        }
-        return value.toString();
-      });
+      await firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
     } on FirebaseAuthException catch (e) {
       return e.message.toString();
     }
