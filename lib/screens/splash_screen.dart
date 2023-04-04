@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:yournotes_project_flutter/screens/login_Screen.dart';
 
 import '../widgets/button_widget.dart';
-import 'signup_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -12,7 +11,7 @@ class SplashScreen extends StatelessWidget {
     return Material(
       child: Column(
         children: [
-          Spacer(),
+          const Spacer(),
           Container(
             height: 250,
             decoration: const BoxDecoration(
@@ -39,7 +38,7 @@ class SplashScreen extends StatelessWidget {
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
             padding: const EdgeInsets.only(bottom: 40),
             child: InkWell(

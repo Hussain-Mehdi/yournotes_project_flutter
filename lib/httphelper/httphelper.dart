@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:yournotes_project_flutter/httphelper/sp_helper.dart';
-import 'package:yournotes_project_flutter/screens/signup_screen.dart';
 
 import '../utils/dialogBox.dart';
 

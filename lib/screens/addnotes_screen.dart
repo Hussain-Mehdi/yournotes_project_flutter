@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yournotes_project_flutter/model/addnote_model.dart';
 
+// ignore: must_be_immutable
 class AddNotesScreen extends StatefulWidget {
   AddNotesScreen({super.key, required this.updateState});
 

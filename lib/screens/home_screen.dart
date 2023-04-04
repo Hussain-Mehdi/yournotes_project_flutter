@@ -1,13 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:yournotes_project_flutter/model/addnote_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yournotes_project_flutter/screens/addnotes_screen.dart';
-
 import '../shared/menu_drawer.dart';
 import '../widgets/notesTile_widget.dart';
-import 'login_Screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,51 +15,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool availableData = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        drawer: const MenuDrawer(),
-        backgroundColor: const Color(0xfff5f5f5),
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            'Home Screen',
-            style: GoogleFonts.poppins(color: Colors.black),
-          ),
-          iconTheme: const IconThemeData(color: Color.fromARGB(171, 0, 0, 0)),
-          actions: [
-            const CircleAvatar(
-              backgroundImage: AssetImage("./images/pot1.jpg"),
-              backgroundColor: Colors.transparent,
-            )
-          ],
-          backgroundColor: const Color(0xffF5F5F5),
-          elevation: 0,
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: const Color(0xffF4B183),
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      AddNotesScreen(updateState: parentState),
-                ));
-          },
-          child: const Icon(Icons.add),
-        ),
-        body: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return loadedHomeScreen();
-            } else {
-              return emptyHomeScreen();
-            }
-          },
-        ));
-  }
 
   Widget emptyHomeScreen() {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -172,5 +124,50 @@ class _HomeScreenState extends State<HomeScreen> {
         availableData = value;
       });
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        drawer: const MenuDrawer(),
+        backgroundColor: const Color(0xfff5f5f5),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            'Home Screen',
+            style: GoogleFonts.poppins(color: Colors.black),
+          ),
+          iconTheme: const IconThemeData(color: Color.fromARGB(171, 0, 0, 0)),
+          actions: const [
+            CircleAvatar(
+              backgroundImage: AssetImage("./images/pot1.jpg"),
+              backgroundColor: Colors.transparent,
+            )
+          ],
+          backgroundColor: const Color(0xffF5F5F5),
+          elevation: 0,
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: const Color(0xffF4B183),
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      AddNotesScreen(updateState: parentState),
+                ));
+          },
+          child: const Icon(Icons.add),
+        ),
+        body: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return loadedHomeScreen();
+            } else {
+              return emptyHomeScreen();
+            }
+          },
+        ));
   }
 }

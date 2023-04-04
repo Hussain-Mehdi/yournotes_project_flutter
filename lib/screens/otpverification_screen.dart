@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 import 'package:yournotes_project_flutter/utils/dialogBox.dart';
-import '../utils/dialogBox.dart';
 
+// ignore: must_be_immutable
 class OTPVerificationScreen extends StatelessWidget {
   String userEmail;
-  OTPVerificationScreen({required this.userEmail});
+  OTPVerificationScreen({super.key, required this.userEmail});
 
   @override
   Widget build(BuildContext context) {

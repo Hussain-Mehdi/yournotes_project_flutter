@@ -23,7 +23,7 @@ class MenuDrawer extends StatelessWidget {
       'Setting',
       'Logout',
     ];
-    List<Widget> menuIcons = [
+    List<Widget> menuIcons = const [
       Icon(Icons.home_outlined),
       Icon(Icons.favorite_outline),
       Icon(Icons.settings_outlined),

@@ -22,7 +22,7 @@ class NotesTile extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color.fromARGB(10, 153, 153, 153),
                     spreadRadius: 2,
@@ -42,7 +42,7 @@ class NotesTile extends StatelessWidget {
               Positioned(
                   top: 45,
                   left: 15,
-                  child: Container(
+                  child: SizedBox(
                       width: 250, height: 30, child: Text(noteSubtitle))),
               Positioned(
                   right: 20,
@@ -50,8 +50,8 @@ class NotesTile extends StatelessWidget {
                   child: Text(noteTime,
                       overflow: TextOverflow.ellipsis,
                       softWrap: true,
-                      style: TextStyle())),
-              Positioned(
+                      style: const TextStyle())),
+              const Positioned(
                   right: 20,
                   bottom: 15,
                   child: Icon(

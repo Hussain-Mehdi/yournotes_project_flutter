@@ -8,7 +8,7 @@ class Utils {
 
     final snackBar = SnackBar(
       content: Text(text),
-      backgroundColor: Color(0xffDFA67B),
+      backgroundColor: const Color(0xffDFA67B),
     );
     messengerKey.currentState!
       ..removeCurrentSnackBar()
@@ -30,19 +30,19 @@ class Utils {
               text: TextSpan(
                   text: beforeText,
                   style: GoogleFonts.poppins(
-                    color: Color.fromARGB(190, 0, 0, 0),
+                    color: const Color.fromARGB(190, 0, 0, 0),
                   ),
                   children: [
                     TextSpan(
                         text: userEmail,
                         style: GoogleFonts.poppins(
                             fontSize: 12,
-                            color: Color(0xffDFA67B),
+                            color:const  Color(0xffDFA67B),
                             fontWeight: FontWeight.w600)),
                     TextSpan(
                         text: afterText,
                         style: GoogleFonts.poppins(
-                          color: Color.fromARGB(190, 0, 0, 0),
+                          color: const Color.fromARGB(190, 0, 0, 0),
                         ))
                   ]),
             ),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'screens/home_screen.dart';
-import 'screens/otpverification_screen.dart';
 import 'screens/splash_screen.dart';
 import 'utils/dialogBox.dart';
 
@@ -20,6 +18,6 @@ class MyApp extends StatelessWidget {
         scaffoldMessengerKey: Utils.messengerKey,
         debugShowCheckedModeBanner: false,
         title: "YOURNOTE",
-        home: HomeScreen());
+        home: const SplashScreen());
   }
 }

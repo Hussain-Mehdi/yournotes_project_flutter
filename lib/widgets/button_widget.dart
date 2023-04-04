@@ -4,7 +4,7 @@ class MyButton extends StatelessWidget {
   String buttonText;
   bool pressed;
 
-  MyButton({required this.buttonText, required this.pressed});
+  MyButton({super.key, required this.buttonText, required this.pressed});
 
   @override
   Widget build(BuildContext context) {
