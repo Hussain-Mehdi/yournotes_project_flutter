@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:yournotes_project_flutter/model/addnote_model.dart';
+import 'package:yournotes_project_flutter/screens/addnotes_screen.dart';
+import 'package:yournotes_project_flutter/screens/home_screen.dart';
 import 'screens/splash_screen.dart';
 import 'utils/dialogBox.dart';
 
@@ -8,6 +11,10 @@ Future main() async {
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
+
+// void main(List<String> args) {
+//   runApp(MyApp());
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,6 +25,6 @@ class MyApp extends StatelessWidget {
         scaffoldMessengerKey: Utils.messengerKey,
         debugShowCheckedModeBanner: false,
         title: "YOURNOTE",
-        home: const SplashScreen());
+        home: const HomeScreen());
   }
 }
