@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:yournotes_project_flutter/screens/addnotes_screen.dart';
 import '../shared/menu_drawer.dart';
 import '../widgets/notesTile_widget.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,6 +16,22 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool availableData = false;
+
+  // @override
+  // void initState() {
+  //   AwesomeNotifications().isNotificationAllowed().then((allow) => {
+  //         if (!allow)
+  //           {AwesomeNotifications().requestPermissionToSendNotifications()}
+  //       });
+
+  //   super.initState();
+  // }
+
+  @override
+  void initState() {
+    setState(() {});
+    super.initState();
+  }
 
   Widget emptyHomeScreen() {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -63,10 +80,21 @@ class _HomeScreenState extends State<HomeScreen> {
               itemCount: userNotesList.length,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
-                return NotesTile(
-                    noteHeading: userNotesList[index].noteHeading,
-                    noteSubtitle: userNotesList[index].noteContent,
-                    noteTime: userNotesList[index].noteTime);
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AddNotesScreen(
+                              userNotesList[index].noteHeading,
+                              userNotesList[index].noteContent),
+                        ));
+                  },
+                  child: NotesTile(
+                      noteHeading: userNotesList[index].noteHeading,
+                      noteSubtitle: userNotesList[index].noteContent,
+                      noteTime: userNotesList[index].noteTime),
+                );
               }))
     ]);
   }
@@ -85,7 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => AddNotesScreen(
-                          updateState: userNotesList as Function)));
+                          userNotesList[index].noteHeading,
+                          userNotesList[index].noteContent)));
             },
             child: Container(
               width: 150,
@@ -118,56 +147,44 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void parentState(value) {
-    if (value) {
-      setState(() {
-        availableData = value;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: const MenuDrawer(),
-        backgroundColor: const Color(0xfff5f5f5),
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            'Home Screen',
-            style: GoogleFonts.poppins(color: Colors.black),
-          ),
-          iconTheme: const IconThemeData(color: Color.fromARGB(171, 0, 0, 0)),
-          actions: const [
-            CircleAvatar(
-              backgroundImage: AssetImage("./images/pot1.jpg"),
-              backgroundColor: Colors.transparent,
-            )
-          ],
-          backgroundColor: const Color(0xffF5F5F5),
-          elevation: 0,
+      drawer: const MenuDrawer(),
+      backgroundColor: const Color(0xfff5f5f5),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'Home Screen',
+          style: GoogleFonts.poppins(color: Colors.black),
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: const Color(0xffF4B183),
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      AddNotesScreen(updateState: parentState),
-                ));
-          },
-          child: const Icon(Icons.add),
-        ),
-        body: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return loadedHomeScreen();
-            } else {
-              return emptyHomeScreen();
-            }
-          },
-        ));
+        iconTheme: const IconThemeData(color: Color.fromARGB(171, 0, 0, 0)),
+        actions: const [
+          CircleAvatar(
+            backgroundImage: AssetImage("./images/pot1.jpg"),
+            backgroundColor: Colors.transparent,
+          )
+        ],
+        backgroundColor: const Color(0xffF5F5F5),
+        elevation: 0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xffF4B183),
+        onPressed: () {
+          AwesomeNotifications().createNotification(
+              content: NotificationContent(
+                  id: 2,
+                  channelKey: 'baisc_channel',
+                  title: 'Simple Notification'));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddNotesScreen('', ''),
+              ));
+        },
+        child: const Icon(Icons.add),
+      ),
+      body: userNotesList.isEmpty ? emptyHomeScreen() : loadedHomeScreen(),
+    );
   }
 }

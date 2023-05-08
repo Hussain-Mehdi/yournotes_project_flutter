@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:yournotes_project_flutter/screens/login_Screen.dart';
-
 import '../widgets/button_widget.dart';
 
 class SplashScreen extends StatelessWidget {
