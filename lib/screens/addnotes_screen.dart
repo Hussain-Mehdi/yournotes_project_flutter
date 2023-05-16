@@ -5,18 +5,19 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:yournotes_project_flutter/utils/dialogBox.dart';
 
 class AddNotesScreen extends StatefulWidget {
-  String? noteHeading;
-  String? noteDetail;
+  AddNotesScreen(this.noteHeading, this.noteDetail, this.noteID);
 
-  AddNotesScreen(this.noteHeading, this.noteDetail);
+  String? noteDetail;
+  String? noteHeading;
+  String noteID;
 
   @override
   State<AddNotesScreen> createState() => _AddNotesScreenState();
 }
 
 class _AddNotesScreenState extends State<AddNotesScreen> {
-  TextEditingController notesHeading = TextEditingController();
   TextEditingController notesContent = TextEditingController();
+  TextEditingController notesHeading = TextEditingController();
   DateTime time = DateTime.now();
 
   @override
@@ -39,11 +40,22 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                   Utils.showSnackBar("Empty can not be saved!");
                   Utils.showDialogBox(context, titleText: "Empty cann");
                 } else {
-                  userNotesList.add(AddNotes(
-                      noteHeading: notesHeading.text,
-                      noteContent: notesContent.text,
-                      noteTime:
-                          "${time.hour > 12 ? time.hour - 12 : time.hour}:${time.minute}"));
+                  if (widget.noteID == 'NULL') {
+                    userNotesList.add(AddNotes(
+                        noteHeading: notesHeading.text,
+                        noteContent: notesContent.text,
+                        noteTime:
+                            "${time.hour > 12 ? time.hour - 12 : time.hour}:${time.minute}"));
+                  } else {
+                    userNotesList.removeAt(int.parse(widget.noteID));
+                    userNotesList.insert(
+                        int.parse(widget.noteID),
+                        AddNotes(
+                            noteHeading: notesHeading.text,
+                            noteContent: notesContent.text,
+                            noteTime:
+                                "${time.hour > 12 ? time.hour - 12 : time.hour}:${time.minute}"));
+                  }
 
                   setState(() {});
                 }
@@ -64,15 +76,18 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 18.0, right: 18),
-            child: TextField(
-              controller: notesHeading,
-              style: GoogleFonts.poppins(
-                  fontSize: 18, fontWeight: FontWeight.w700),
-              decoration: const InputDecoration(
-                  hintText: 'Enter heading here',
-                  hintStyle:
-                      TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
-                  border: UnderlineInputBorder(borderSide: BorderSide.none)),
+            child: SizedBox(
+              child: TextField(
+                controller: notesHeading,
+                style: GoogleFonts.poppins(
+                    fontSize: 18, fontWeight: FontWeight.w700),
+                decoration: const InputDecoration(
+                    hintText: 'Enter heading here',
+                    hintStyle: TextStyle(
+                      fontSize: 18,
+                    ),
+                    border: UnderlineInputBorder(borderSide: BorderSide.none)),
+              ),
             ),
           ),
           Container(

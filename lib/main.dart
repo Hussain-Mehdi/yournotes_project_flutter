@@ -7,21 +7,25 @@ import 'screens/splash_screen.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'utils/dialogBox.dart';
 
-Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  AwesomeNotifications().initialize(
-    null,
-    [
-      NotificationChannel(
-          channelKey: 'basic channel key',
-          channelName: 'Update',
-          channelDescription: 'Please update your app'),
-    ],
-    debug: true,
-  );
-  await Firebase.initializeApp();
+// Future main() async {
+//   // await WidgetsFlutterBinding.ensureInitialized();
+//   // AwesomeNotifications().initialize(
+//   //   null,
+//   //   [
+//   //     NotificationChannel(
+//   //         channelKey: 'basic channel key',
+//   //         channelName: 'Update',
+//   //         channelDescription: 'Please update your app'),
+//   //   ],
+//   //   debug: true,
+//   // );
+//   // await Firebase.initializeApp();
 
-  runApp(const MyApp());
+//   runApp(const MyApp());
+// }
+
+void main(List<String> args) {
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -33,6 +37,6 @@ class MyApp extends StatelessWidget {
         scaffoldMessengerKey: Utils.messengerKey,
         debugShowCheckedModeBanner: false,
         title: "YOURNOTE",
-        home: const HomeScreen());
+        home: AddNotesScreen('', '', ''));
   }
 }

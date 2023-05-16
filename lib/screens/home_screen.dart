@@ -87,7 +87,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         MaterialPageRoute(
                           builder: (context) => AddNotesScreen(
                               userNotesList[index].noteHeading,
-                              userNotesList[index].noteContent),
+                              userNotesList[index].noteContent,
+                              index.toString()),
                         ));
                   },
                   child: NotesTile(
@@ -114,7 +115,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   MaterialPageRoute(
                       builder: (context) => AddNotesScreen(
                           userNotesList[index].noteHeading,
-                          userNotesList[index].noteContent)));
+                          userNotesList[index].noteContent,
+                          index.toString())));
             },
             child: Container(
               width: 150,
@@ -160,9 +162,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         iconTheme: const IconThemeData(color: Color.fromARGB(171, 0, 0, 0)),
         actions: const [
-          CircleAvatar(
-            backgroundImage: AssetImage("./images/pot1.jpg"),
-            backgroundColor: Colors.transparent,
+          Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: CircleAvatar(
+              radius: 15,
+              backgroundImage: AssetImage("./images/pot1.jpg"),
+              backgroundColor: Colors.transparent,
+            ),
           )
         ],
         backgroundColor: const Color(0xffF5F5F5),
@@ -179,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AddNotesScreen('', ''),
+                builder: (context) => AddNotesScreen('', '', 'NULL'),
               ));
         },
         child: const Icon(Icons.add),
