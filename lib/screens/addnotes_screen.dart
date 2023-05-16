@@ -75,11 +75,11 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 18.0, right: 18),
+            padding: const EdgeInsets.only(left: 5.0, right: 5),
             child: SizedBox(
               child: TextField(
                 controller: notesHeading,
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.roboto(
                     fontSize: 18, fontWeight: FontWeight.w700),
                 decoration: const InputDecoration(
                     hintText: 'Enter heading here',

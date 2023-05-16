@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
         scaffoldMessengerKey: Utils.messengerKey,
         debugShowCheckedModeBanner: false,
         title: "YOURNOTE",
-        home: AddNotesScreen('', '', ''));
+        //home: AddNotesScreen('', '', ''));
+        home: HomeScreen());
   }
 }
